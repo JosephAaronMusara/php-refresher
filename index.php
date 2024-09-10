@@ -8,8 +8,8 @@
 </head>
 <body>
   <div class="formdiv">
-    <!-- <?php echo $_SERVER["PHP_SELF"]?> -->
-  <form action="includes/formhandle.php" method="post">
+    <!--  -->
+  <form action="<?php echo $_SERVER["PHP_SELF"]?>" method="post">
     <label for="firstnumber">First number</label>
     <input type="text" name="firstnumber" id="firstnumber" placeholder="First Number........"><br/>
     <label for="secondnumber">Second Number</label>
@@ -25,5 +25,34 @@
     <input type="submit" value="Submit">
   </div>
     </form>
+    <?php
+    $firstnum = $_POST["firstnumber"];
+    $secondnum = $_POST["secondnumber"];
+    $operation = $_POST["operator"];
+    $result = 0;
+
+    switch($operation){
+      case "add":
+        $result = $firstnum + $secondnum;
+        break;
+      case "subtract":
+        $result = $firstnum - $secondnum;
+        break;
+      case "multiply":
+        $result = $firstnum * $secondnum;
+        break;
+      case "divide":
+        $result = $firstnum / $secondnum;
+        break;
+    default:
+        $result = "Invalid Operation";
+    }
+    if($result == "Invalid Operation"){
+      echo "No operation to perform. Check your input well";
+    }else{
+      echo "[Operation] ==> $operation<br> [Numbers] ==> $firstnum and $secondnum <br>[Result] ==> $result";
+    }
+?>
+
 </body>
 </html>
