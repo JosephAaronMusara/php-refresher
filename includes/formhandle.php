@@ -1,22 +1,19 @@
 <?php
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $firstnum = $_POST("firstnumber");
+    $secondnum = $_POST("secondnumber");
+    $operation = $_POST("operator");
+    $result = 0;
 
-    $firstname = $_POST["firstname"];
-    $lastname = $_POST["lastname"];
-    $favColor = $_POST["favcolor"];
+    switch($operation){
+      case "add":
+        $result = $firstnum + $secondnum;
+      case "subtract":
+        $result = $firstnum - $secondnum;
+      case "multiply":
+        $result = $firstnum * $secondnum;
+      case "divide":
+        $result = $firstnum / $secondnum;
 
-    if(empty($firstname) || empty($lastname)){
-        if(empty($firstname)){
-            echo "First name is required!";
-            exit();
-        }
-        if(empty($lastname)){
-            echo "Last name is required";
-        }
-    }else{
-        echo "The name is $firstname $lastname.\nThey like $favColor";
     }
+    echo "$operation of $firstnum and $secondnum is \n $result";
 
-}else{
-    header("Location : index.php");
-}

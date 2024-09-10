@@ -8,21 +8,22 @@
 </head>
 <body>
   <div class="formdiv">
-  <form action="<?php echo $_SERVER["PHP_SELF"]?>" method="post">
-    <label for="firstname">First Name</label>
-    <input type="text" name="firstname" id="firstname" placeholder="First Name........">
-    <label for="lastname">Last Name</label>
-    <input type="text" name="lastname" id="lastname" placeholder="Last Name..........">
-
-    <select name="favcolor" id="favcolor">
-      <option value="No Color"></option>
-      <option value="Blue">Blue</option>
-      <option value="Red">Red</option>
-      <option value="Pink">Pink</option>
+    <!-- <?php echo $_SERVER["PHP_SELF"]?> -->
+  <form action="includes/formhandle.php" method="post">
+    <label for="firstnumber">First number</label>
+    <input type="text" name="firstnumber" id="firstnumber" placeholder="First Number........"><br/>
+    <label for="secondnumber">Second Number</label>
+    <input type="text" name="secondnumber" id="secondnumber" placeholder="Second Number.........."><br/>
+  <label for="operator">Select the operation: </label>
+    <select name="operator" id="operator">
+      <option value="add">Add</option>
+      <option value="subtract">Subtract</option>
+      <option value="multiply">Multiply</option>
+      <option value="divide">Divide</option>
     </select>
+    <br>
     <input type="submit" value="Submit">
   </div>
     </form>
-    <?php echo $_SERVER["PHP_SELF"];?>
 </body>
 </html>

@@ -2,7 +2,23 @@ main{
     background-color:bisque;
 }
 .formdiv{
-    align-self: center;
-    align-items: flex-start;
-    background-color: grey;
+    height: 200px;
+    width: 40%px;
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background-color:bisque;
+    margin: 50px;
+    border: 5px black solid;
+
+}
+label{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: large;
+    margin-right: 15px;
+}
+input[type="submit"]{
+    background-color: dodgerblue;
+    margin-top: 10px;
+    margin-left: 50%;
 }
