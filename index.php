@@ -8,29 +8,41 @@
 </head>
 <body>
   <div class="formdiv">
-    <!--  -->
   <form action="<?php echo $_SERVER["PHP_SELF"]?>" method="post">
-    <label for="firstnumber">First number</label>
-    <input type="text" name="firstnumber" id="firstnumber" placeholder="First Number........"><br/>
-    <label for="secondnumber">Second Number</label>
-    <input type="text" name="secondnumber" id="secondnumber" placeholder="Second Number.........."><br/>
-  <label for="operator">Select the operation: </label>
+    <input type="number" name="firstnumber" id="firstnumber" placeholder="First Number......"><br/>
     <select name="operator" id="operator">
-      <option value="add">Add</option>
-      <option value="subtract">Subtract</option>
-      <option value="multiply">Multiply</option>
-      <option value="divide">Divide</option>
+      <option value="add">+</option>
+      <option value="subtract">-</option>
+      <option value="multiply">*</option>
+      <option value="divide">/</option>
     </select>
     <br>
-    <input type="submit" value="Submit">
+    <input type="number" name="secondnumber" id="secondnumber" placeholder="Second Number......"><br/>
+    <button>Calculate</button>
   </div>
     </form>
     <?php
-    $firstnum = $_POST["firstnumber"];
-    $secondnum = $_POST["secondnumber"];
-    $operation = $_POST["operator"];
+   if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $firstnum = filter_input(INPUT_POST,"firstnumber",FILTER_SANITIZE_NUMBER_FLOAT);
+    $secondnum =filter_input(INPUT_POST,"secondnumber",FILTER_SANITIZE_NUMBER_FLOAT);
+    $operation = htmlspecialchars($_POST["operator"]);
     $result = 0;
 
+    //Erro handling
+    $errors = false;
+    if(empty($firstnum) || empty($secondnum) || empty($operation)){
+      echo "<p class='error-msgs'>Fill in all fields!</p>";
+      $errors=true;
+    }
+
+    if(!is_numeric($firstnum) || !is_numeric($secondnum))
+    {
+      echo "<p class='error-msgs'>Values MUST be numeric!</p>";
+      $errors=true;
+    }
+
+  if(!$errors){
+    $result = 0;
     switch($operation){
       case "add":
         $result = $firstnum + $secondnum;
@@ -45,13 +57,12 @@
         $result = $firstnum / $secondnum;
         break;
     default:
-        $result = "Invalid Operation";
+    echo "<p class='error-msgs'>Something went wrong!</p>";
     }
-    if($result == "Invalid Operation"){
-      echo "No operation to perform. Check your input well";
-    }else{
-      echo "[Operation] ==> $operation<br> [Numbers] ==> $firstnum and $secondnum <br>[Result] ==> $result";
-    }
+
+    echo "<p class='calc-result'>[Operation] ==> $operation<br> [Numbers] ==> $firstnum and $secondnum <br>[Result] ==> $result </p>";
+  }
+   }
 ?>
 
 </body>
