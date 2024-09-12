@@ -7,7 +7,17 @@
   <title>CRUD-Create</title>
 </head>
 <body>
-  <div class="signup-container">
+
+
+<div class="signup-container">
+    <h3>Search Users</h3>
+    <form action="search.php" method="post">
+      <input type="text" name="usersearch" placeholder="Search Users" required>
+      <button>Search</button>
+    </form>
+</div>
+
+  <!-- <div class="signup-container">
     <h3>Sign Up</h3>
     <form action="includes/createuser.inc.php" method="post">
       <input type="text" name="username" placeholder="Username">
@@ -32,6 +42,7 @@
       <input type="password" name="pwd" placeholder="Password">
       <button>Delete</button>
     </form>
-  </div>
+    </div> -->
+  
 </body>
 </html>
